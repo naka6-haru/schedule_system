@@ -13,6 +13,7 @@
                 <tr>
                     <th>社員のログインID</th>
                     <th>氏名</th>
+                    <th>権限</th>
                     <th>情報</th>
                 </tr>
                 <c:forEach var="user" items="${users}" varStatus="status">
@@ -20,9 +21,29 @@
                         <td><c:out value="${user.login_id}"/></td>
                         <td><c:out value="${user.name}"/></td>
                         <td>
-                            <c:if test="${user.delete_flag == 1}">
+                            <c:choose>
+                                <c:when test="${user.admin_flag == 1}">管理者</c:when>
+                                <c:otherwise>一般</c:otherwise>
+                            </c:choose>
+                        <td>
+                            <c:choose>
+                            <c:when test="${user.delete_flag == 1}">
                                 (削除済み)
-                            </c:if>
+                            </c:when>
+                            <c:otherwise>
+                                <p><a href="#" onclick="confirmDestroy();">この社員を削除する</a>
+                                <form method="post" action="<c:url value='/users/destroy'/>">
+                                    <input type="hidden" name="_token" value="${_roken}"/>
+                                </form>
+                                <script>
+                                    function confirmDestroy(){
+                                        if(confirm("本当に削除してよろしいですか？")){
+                                            document.forms[1].submit();
+                                        }
+                                    }
+                                </script>
+                            </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:forEach>
