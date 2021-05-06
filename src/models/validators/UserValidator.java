@@ -30,6 +30,7 @@ public class UserValidator {
         return errors;
     }
 
+    //社員のログインID
     private static String validateLogin_id(String login_id,Boolean login_idDuplicateCheckFlag){
         //必須入力チェック
         if(login_id == null || login_id.equals("")){
