@@ -40,9 +40,9 @@ public class UserValidator {
         //すでに登録されているログインIDとの重複チェック
         if(login_idDuplicateCheckFlag){
             EntityManager em = DBUtil.createEntityManager();
-            long user_count = (long)em.createNamedQuery("checkRegisteredLogin_id",Long.class).setParameter("login_id", login_id).getSingleResult();
+            long users_count = (long)em.createNamedQuery("checkRegisteredLogin_id",Long.class).setParameter("login_id", login_id).getSingleResult();
             em.close();
-            if(user_count > 0){
+            if(users_count > 0){
                 return "入力されたログインIDはすでに存在しています。";
             }
         }
