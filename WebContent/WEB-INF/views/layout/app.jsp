@@ -11,7 +11,15 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>スケジュール管理システム</h1>
+                <div id="header_menu">
+                    <h1>スケジュール管理システム</h1>&nbsp;&nbsp;&nbsp;
+                </div>
+                <c:if test="${sessionScope.login_user != null}">
+                    <div id="user_name">
+                        <a href="<c:url value='/index.html'/>"><c:out value="${sessionScope.login_user.name}"/>&nbsp;さん</a>&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/logout'/>">ログアウト</a>
+                    </div>
+                </c:if>
             </div>
             <div id="content">
                 ${param.content}
