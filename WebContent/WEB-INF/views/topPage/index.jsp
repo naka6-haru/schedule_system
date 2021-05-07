@@ -3,6 +3,5 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <h2>スケジュール管理システムへようこそ</h2>
-        <p><a href="<c:url value='/users/edit?id=${user.id}' />">パスワード変更</a></p>
     </c:param>
 </c:import>
