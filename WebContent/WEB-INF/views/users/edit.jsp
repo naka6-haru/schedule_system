@@ -12,24 +12,43 @@
         </c:if>
         <c:choose>
             <c:when test="${user != null}">
-                <h2>${user.name}さんのパスワード変更ページ</h2>
+                <h2>${user.name}さんの従業員情報 編集ページ</h2>
                 <form method="post" action="<c:url value='/users/update' />">
-                    <p>ログインID：${user.login_id}</p>
-                    <p>氏名：${user.name}</p>
-                    <label for="password">パスワード</label><br />
-                    <input type="password" name="password" />
+                    <p>ログインID : ${user.login_id} </p>
+                    <br/>
+
+                    <label for="name">氏名</label><br/>
+                    <input type="text" name="name" value="${user.name}"/>
+                    <br/><br/>
+
+                    <label for="admin_flag">権限</label><br/>
+                    <select name="admin_flag">
+                        <option value="0"<c:if test="${user.admin_flag == 0}">selected</c:if>>一般</option>
+                        <option value="1"<c:if test="${user.admin_flag == 1}">selected</c:if>>管理者</option>
+                    </select>
                     <br /><br />
 
                     <input type="hidden" name="_token" value="${_token}"/>
                     <button type="submit">変更</button>
                 </form>
 
+                <p><a href="#" onclick="confirmDestroy();">この従業員情報を削除する</a></p>
+                <form method="post" action="<c:url value='/users/destroy?id=${user.id}'/>">
+                    <input type="hidden" name="_token" value="${_token}"/>
+                </form>
+                <script>
+                    function confirmDestroy(){
+                        if(confirm("本当に削除してよろしいですか？")){
+                            document.forms[1].submit();
+                        }
+                    }
+                </script>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/topPage/index'/>">トップページに戻る</a>
+        <p><a href="<c:url value='/users/index'/>">トップページに戻る</a>
     </c:param>
 </c:import>
