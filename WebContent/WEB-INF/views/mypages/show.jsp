@@ -29,7 +29,7 @@
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='/mypages/edit?id=${user.id}'/>">パスワードを変更する</a></p>
+                <p><a href="<c:url value='/mypage/edit?id=${user.id}'/>">パスワードを変更する</a></p>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
