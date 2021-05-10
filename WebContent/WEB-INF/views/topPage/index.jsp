@@ -11,7 +11,7 @@
             <c:choose>
                 <c:when test="${sessionScope.login_user.admin_flag == 1}">
                     <p><a href="<c:url value='/users/index'/>">ユーザ情報 一覧</a></p>
-                    <p>提出スケジュール 一覧</p>
+                    <p><a href="<c:url value='/schedule_date/index'/>">提出スケジュール 一覧</a></p>
                     <p><a href="<c:url value='/mypage/show?id=${sessionScope.login_user.id}'/>">マイページ</a></p>
                 </c:when>
                 <c:otherwise>

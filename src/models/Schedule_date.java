@@ -5,9 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "schedule_dates")
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllSchedule_dates",
+        query = "SELECT s FROM Schedule_date AS s ORDER BY s.id DESC"
+    ),
+    @NamedQuery(
+        name = "getSchedule_datesCount",
+        query = "SELECT COUNT(s) FROM Schedule_date AS s"
+    )
+})
 @Entity
 public class Schedule_date {
     @Id
