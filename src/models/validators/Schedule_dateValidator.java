@@ -24,7 +24,7 @@ public class Schedule_dateValidator {
 
     private static String _validateStart(String schedule_start){
         if(schedule_start == null || schedule_start.equals("")){
-            return "はじめの日付を入力してください。";
+            return "開始日の日付を入力してください。";
         }
 
         return "";
@@ -32,7 +32,7 @@ public class Schedule_dateValidator {
 
     private static String _validateLast(String schedule_last){
         if(schedule_last == null || schedule_last.equals("")){
-            return "さいごの日付を入力してください。";
+            return "最終日の日付を入力してください。";
         }
 
         return "";
