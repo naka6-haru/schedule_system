@@ -12,20 +12,22 @@
             <tbody>
                 <tr>
                     <th>日程</th>
+                    <th>提出スケジュール</th>
                     <th>希望スケジュール</th>
                 </tr>
-                <c:forEach var="schedule" items="${schedule}" varStatus="status">
+                <c:forEach var="schedule_date" items="${schedule_dates}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${schedule.schedule_date.schedule_start}"/> ～ <c:out value="${schedule.schedule_date.schedule_last}"/></td>
-                        <td><a href="<c:url value='/schedule/show?id=${schedule.id}'/>">詳細</a></td>
+                        <td><c:out value="${schedule_date.schedule_start}"/> ～ <c:out value="${schedule_date.schedule_last}"/></td>
+                        <td><a href="<c:url value='/schedule/show?id=${schedule_date.id}'/>">詳細</a></td>
+                        <td><a href="<c:url value='/schedule/new?id=${schedule_date.id}'/>">提出</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
 
         <div id="pagination">
-            (全 ${schedule_count} 件)<br />
-            <c:forEach var="i" begin="1" end="${((schedule_count - 1) / 15) + 1}" step="1">
+            (全 ${schedule_date_count} 件)<br />
+            <c:forEach var="i" begin="1" end="${((schedule_date_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -36,7 +38,6 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/schedule/new'/>">新規スケジュール提出</a></p>
         <p><a href="<c:url value='/index.html'/>">トップページに戻る</a></p>
     </c:param>
 </c:import>

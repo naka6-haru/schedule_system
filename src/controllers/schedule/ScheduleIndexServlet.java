@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Schedule;
-import models.User;
+import models.Schedule_date;
 import utils.DBUtil;
 
 /**
@@ -35,27 +34,24 @@ public class ScheduleIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        User login_user = (User)request.getSession().getAttribute("login_user");
-
         int page = 1;
         try {
             page = Integer.parseInt(request.getParameter("page"));
         } catch (NumberFormatException e) { }
 
-        List<Schedule> schedule = em.createNamedQuery("getMyAllSchedule",Schedule.class)
-                                     .setParameter("user", login_user)
+        List<Schedule_date> schedule_dates= em.createNamedQuery("getAllSchedule_dates",Schedule_date.class)
                                      .setFirstResult(15 * (page - 1))
                                      .setMaxResults(15)
                                      .getResultList();
 
-        long schedule_count = (long)em.createNamedQuery("getMyAllScheduleCount",Long.class)
-                                       .setParameter("user", login_user)
+        long schedule_date_count = (long)em.createNamedQuery("getSchedule_datesCount",Long.class)
                                        .getSingleResult();
+
 
         em.close();
 
-        request.setAttribute("schedule", schedule);
-        request.setAttribute("schedule_count", schedule_count);
+        request.setAttribute("schedule_dates", schedule_dates);
+        request.setAttribute("schedule_date_count", schedule_date_count);
         request.setAttribute("page", page);
         if(request.getSession().getAttribute("flush") != null){
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
