@@ -7,36 +7,36 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>スケジュール日程  一覧</h2>
-        <table id="schedule_date_list">
+        <h2>希望スケジュール  提出一覧</h2>
+        <table id="schedule_list">
             <tbody>
                 <tr>
                     <th>日程</th>
                     <th>希望スケジュール</th>
                 </tr>
-                <c:forEach var="schedule_date" items="${schedule_dates}" varStatus="status">
+                <c:forEach var="schedule" items="${schedule}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${schedule_date.schedule_start}"/> ～ <c:out value="${schedule_date.schedule_last}"/></td>
-                        <td><a href="<c:url value='/submit_schedule/index?id=${schedule_date.id}'/>">詳細</a></td>
+                        <td><c:out value="${schedule.schedule_date.schedule_start}"/> ～ <c:out value="${schedule.schedule_date.schedule_last}"/></td>
+                        <td><a href="<c:url value='/schedule/show?id=${schedule.id}'/>">詳細</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
 
         <div id="pagination">
-            (全 ${schedule_date_count} 件)<br />
-            <c:forEach var="i" begin="1" end="${((schedule_date_count -1) / 15) + 1}" step="1">
+            (全 ${schedule_count} 件)<br />
+            <c:forEach var="i" begin="1" end="${((schedule_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/schedule_date/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/schedule/index?page=${i}'/>"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/schedule_date/new'/>">スケジュール日程の追加</a></p>
+        <p><a href="<c:url value='/schedule/new'/>">新規スケジュール提出</a></p>
         <p><a href="<c:url value='/index.html'/>">トップページに戻る</a></p>
     </c:param>
 </c:import>

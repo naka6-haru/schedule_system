@@ -15,7 +15,7 @@
                     <p><a href="<c:url value='/mypage/show?id=${sessionScope.login_user.id}'/>">マイページ</a></p>
                 </c:when>
                 <c:otherwise>
-                    <p>希望スケジュール</p>
+                    <p><a href="<c:url value='/schedule/index?id=${sessionScope.login_user.id}'/>">希望スケジュール</a></p>
                     <p><a href="<c:url value='/mypage/show?id=${sessionScope.login_user.id}'/>">マイページ</a></p>
                 </c:otherwise>
             </c:choose>
