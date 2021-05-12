@@ -29,7 +29,7 @@
         </c:when>
         <c:otherwise>
             <h2>希望スケジュール 日程一覧</h2>
-            <p><a href="<c:url value='/schedule/index?id=${sessionScope.login_user}'/>">提出済みスケジュール 一覧</a></p>
+            <p><a href="<c:url value='/schedule/index?id=${sessionScope.login_user.id}'/>">提出済みスケジュール 一覧</a></p>
         <table id="schedule_list">
             <tbody>
                 <tr>
