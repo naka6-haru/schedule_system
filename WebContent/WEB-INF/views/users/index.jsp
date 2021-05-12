@@ -46,5 +46,6 @@
             </c:forEach>
         </div>
         <p><a href="<c:url value='/users/new'/>">新規従業員の登録</a></p>
+        <p><a href="<c:url value='/index.html'/>">トップページへ</a></p>
     </c:param>
 </c:import>
