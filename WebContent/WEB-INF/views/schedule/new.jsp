@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
+        <c:choose>
+            <c:when test="${schedule_date != null}">
         <c:if test="${errors != null}">
             <div id="flush_error">
                 入力内容にエラーがあります。<br />
@@ -63,7 +65,11 @@
             <button type="submit">提出</button>
         </form>
         <br />
-
+        </c:when>
+        <c:otherwise>
+            <h2>お探しのデータは見つかりませんでした。</h2>
+        </c:otherwise>
+    </c:choose>
         <p><a href="<c:url value='/schedule/index?id=${login_user.id}'/>">希望スケジュール 提出一覧に戻る</a></p>
     </c:param>
 </c:import>

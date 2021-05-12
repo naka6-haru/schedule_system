@@ -81,7 +81,7 @@ public class ScheduleCreateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                response.sendRedirect(request.getContextPath() + "/schedule/index");
+                response.sendRedirect(request.getContextPath() + "/schedule/index?id=" + request.getSession().getAttribute("login_user"));
             }
         }
     }
