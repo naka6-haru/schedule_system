@@ -37,12 +37,17 @@ public class UserEditServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("user", u);
-        request.setAttribute("_token", request.getSession().getId() );
-        request.getSession().setAttribute("user_id", u.getId());
+        if(null == u){
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
+            rd.forward(request, response);
+        }else{
+            request.setAttribute("user", u);
+            request.setAttribute("_token", request.getSession().getId() );
+            request.getSession().setAttribute("user_id", u.getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
-        rd.forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
+            rd.forward(request, response);
+        }
     }
 
 }
