@@ -5,6 +5,7 @@
 		<class>models.User</class>
 		<class>models.Schedule_date</class>
 		<class>models.Schedule</class>
+		<class>models.Save_schedule</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/schedule_system?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>

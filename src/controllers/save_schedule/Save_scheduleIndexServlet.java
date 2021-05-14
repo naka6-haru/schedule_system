@@ -1,4 +1,4 @@
-package controllers.submit_schedule;
+package controllers.save_schedule;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,21 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Save_schedule;
-import models.Schedule;
 import models.Schedule_date;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class Submit_scheduleIndexServlet
+ * Servlet implementation class Save_scheduleIndexServlet
  */
-@WebServlet("/submit_schedule/index")
-public class Submit_scheduleIndexServlet extends HttpServlet {
+@WebServlet("/save_schedule/index")
+public class Save_scheduleIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Submit_scheduleIndexServlet() {
+    public Save_scheduleIndexServlet() {
         super();
     }
 
@@ -36,37 +35,36 @@ public class Submit_scheduleIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Schedule_date sd = em.find(Schedule_date.class,Integer.parseInt(request.getParameter("id")));
+        Schedule_date sd = em.find(Schedule_date.class, Integer.parseInt(request.getParameter("id")));
 
         int page = 1;
         try {
             page = Integer.parseInt(request.getParameter("page"));
         } catch (NumberFormatException e) { }
 
-        List<Schedule> schedule = em.createNamedQuery("getDateAllSchedules",Schedule.class)
-                                    .setParameter("schedule_date", sd)
-                                    .setFirstResult(20 * (page - 1))
-                                    .setMaxResults(20)
-                                    .getResultList();
+        List<Save_schedule> save_schedule = em.createNamedQuery("getAllSave_schedules",Save_schedule.class)
+                                              .setParameter("schedule_date", sd)
+                                              .setFirstResult(20 * (page - 1))
+                                              .setMaxResults(20)
+                                              .getResultList();
 
-        long schedule_count = (long)em.createNamedQuery("getDateAllSchedulesCount",Long.class)
-                                       .setParameter("schedule_date", sd)
-                                       .getSingleResult();
+        long save_schedule_count = (long)em.createNamedQuery("getAllSave_schedulesCount",Long.class)
+                                            .setParameter("schedule_date", sd)
+                                            .getSingleResult();
 
         em.close();
 
         request.setAttribute("schedule_date",sd);
-        request.setAttribute("schedule", schedule);
-        request.setAttribute("schedule_count", schedule_count);
+        request.setAttribute("save_schedule", save_schedule);
+        request.setAttribute("save_schedule_count", save_schedule_count);
         request.setAttribute("page", page);
-        request.setAttribute("save_schedule", new Save_schedule());
 
         if(request.getSession().getAttribute("flush") != null){
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/submit_schedule/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/save_schedule/index.jsp");
         rd.forward(request, response);
     }
 

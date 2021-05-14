@@ -17,11 +17,13 @@
                 <tr>
                     <th>日程</th>
                     <th>希望スケジュール</th>
+                    <th>保存済みスケジュール</th>
                 </tr>
                 <c:forEach var="schedule_date" items="${schedule_dates}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${schedule_date.schedule_start}"/> ～ <c:out value="${schedule_date.schedule_last}"/></td>
                         <td><a href="<c:url value='/submit_schedule/index?id=${schedule_date.id}'/>">詳細</a></td>
+                        <td><a href="<c:url value='/save_schedule/index?id=${schedule_date.id}'/>">詳細</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -59,7 +61,9 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/schedule_date/new'/>">スケジュール日程の追加</a></p>
+            <c:if test="${sessionScope.login_user.admin_flag == 1}">
+                <p><a href="<c:url value='/schedule_date/new'/>">スケジュール日程の追加</a></p>
+            </c:if>
         </c:if>
         <p><a href="<c:url value='/index.html'/>">トップページに戻る</a></p>
     </c:param>

@@ -23,6 +23,7 @@
                             <th class="schedule_friday">金</th>
                             <th class="schedule_saturday">土</th>
                             <th class="schedule_sunday">日</th>
+                            <th>操作</th>
                         </tr>
                         <c:forEach var="schedule" items="${schedule}" varStatus="status">
                             <tr class="row${status.count % 2}">
@@ -35,6 +36,7 @@
                                 <td class="schedule_friday"><c:out value="${schedule.friday1}"/> ～ <c:out value="${schedule.friday2}"/></td>
                                 <td class="schedule_saturday"><c:out value="${schedule.saturday1}"/> ～ <c:out value="${schedule.saturday2}"/></td>
                                 <td class="schedule_sunday"><c:out value="${schedule.sunday1}"/> ～ <c:out value="${schedule.sunday2}"/></td>
+                                <td><a href="<c:url value='/save_schedule/new?id=${schedule.id}'/>">詳細</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -57,7 +59,7 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-        <p><a href="<c:url value='/schedule_date/index'/>">提出スケジュール 一覧に戻る</a></p>
+        <p><a href="<c:url value='/schedule_date/index'/>">提出スケジュール 日程一覧に戻る</a></p>
         <p><a href="<c:url value='/index.html'/>">トップページへ戻る</a></p>
     </c:param>
 </c:import>
