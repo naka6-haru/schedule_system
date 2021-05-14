@@ -42,7 +42,9 @@ public class ScheduleCreateServlet extends HttpServlet {
 
             Schedule s = new Schedule();
             Schedule_date sd = em.find(Schedule_date.class, Integer.parseInt(request.getParameter("id")));
-            s.setUser((User)request.getSession().getAttribute("login_user"));
+            User login_user = (User)(request.getSession().getAttribute("login_user"));
+
+            s.setUser(login_user);
 
             s.setSchedule_date(sd);
             s.setMonday1(request.getParameter("monday1"));
@@ -81,7 +83,7 @@ public class ScheduleCreateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                response.sendRedirect(request.getContextPath() + "/schedule/index?id=" + request.getSession().getAttribute("login_user"));
+                response.sendRedirect(request.getContextPath() + "/schedule/index");
             }
         }
     }
