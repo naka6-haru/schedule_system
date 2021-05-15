@@ -54,6 +54,11 @@ public class Save_scheduleIndexServlet extends HttpServlet {
 
         em.close();
 
+        if(null == sd){
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/save_schedule/index.jsp");
+            rd.forward(request, response);
+        }else{
+
         request.setAttribute("schedule_date",sd);
         request.setAttribute("save_schedule", save_schedule);
         request.setAttribute("save_schedule_count", save_schedule_count);
@@ -66,6 +71,7 @@ public class Save_scheduleIndexServlet extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/save_schedule/index.jsp");
         rd.forward(request, response);
+        }
     }
 
 }

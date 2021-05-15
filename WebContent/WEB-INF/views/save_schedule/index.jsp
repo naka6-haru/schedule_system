@@ -59,7 +59,7 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-        <p><a href="<c:url value='/schedule_date/index'/>">提出スケジュール 日程一覧に戻る</a></p>
+        <p><a href="<c:url value='/schedule_date/index'/>">スケジュール日程 一覧に戻る</a></p>
         <p><a href="<c:url value='/index.html'/>">トップページへ戻る</a></p>
     </c:param>
 </c:import>
