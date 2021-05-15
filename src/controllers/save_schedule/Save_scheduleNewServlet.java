@@ -35,6 +35,12 @@ public class Save_scheduleNewServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
         Schedule s = em.find(Schedule.class, Integer.parseInt(request.getParameter("id")));
 
+        em.close();
+
+        if(null == s){
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/save_schedule/new.jsp");
+            rd.forward(request, response);
+        }
         request.setAttribute("schedule", s);
         request.setAttribute("_token", request.getSession().getId());
         request.getSession().setAttribute("user", s.getUser());

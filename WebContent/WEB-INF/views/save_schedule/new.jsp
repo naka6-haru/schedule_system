@@ -64,12 +64,12 @@
                     <button type="submit">保存</button>
                 </form>
                 <br />
+                <p><a href="<c:url value='/submit_schedule/index?id=${schedule.schedule_date.id}'/>">提出スケジュール 一覧に戻る</a>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
+                <p><a href="<c:url value='/schedule_date/index'/>">スケジュール日程 一覧に戻る</a>
             </c:otherwise>
         </c:choose>
-
-        <p><a href="<c:url value='/submit_schedule/index'/>">一覧に戻る</a>
     </c:param>
 </c:import>
