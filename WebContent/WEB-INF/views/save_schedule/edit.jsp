@@ -64,6 +64,18 @@
                     <button type="submit">変更</button>
                 </form>
                 <br />
+
+                <p><a href="#" onclick="confirmDestroy();">このスケジュールを削除する</a></p>
+                <form method="post" action="<c:url value='/save_schedule/destroy?id=${save_schedule.id}'/>">
+                    <input type="hidden" name="_token" value="${_token}"/>
+                </form>
+                <script>
+                    function confirmDestroy(){
+                        if(confirm("本当に削除してよろしいですか？")){
+                            document.forms[1].submit();
+                        }
+                    }
+                </script>
                 <p><a href="<c:url value='/save_schedule/index?id=${save_schedule.schedule_date.id}'/>">保存済みスケジュール 一覧に戻る</a>
             </c:when>
             <c:otherwise>
